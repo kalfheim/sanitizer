@@ -1,9 +1,7 @@
-<?php declare(strict_types=1);
+<?php
 
-use Alfheim\Sanitizer\{
-    Sanitizer,
-    Registrar\BaseRegistrar
-};
+use Alfheim\Sanitizer\Sanitizer;
+use Alfheim\Sanitizer\Registrar\BaseRegistrar;
 
 class RegistrarTest extends PHPUnit_Framework_TestCase
 {
@@ -66,7 +64,7 @@ class RegistrarTest extends PHPUnit_Framework_TestCase
         $factory = Sanitizer::make([
             'str' => [
                 'withArgs:foo:{{ VALUE }}:bar',
-                function (string $value): string {
+                function ($value) {
                     return strtoupper($value);
                 }
             ],
@@ -96,15 +94,15 @@ class RegistrarTest extends PHPUnit_Framework_TestCase
         $registrar->resolve('idontexist');
     }
 
-    private function makeRegistrar(): BaseRegistrar
+    private function makeRegistrar()
     {
         $registrar = new BaseRegistrar;
 
-        $registrar->register('specialTrim', function (string $value): string {
+        $registrar->register('specialTrim', function ($value) {
             return trim($value);
         });
 
-        $registrar->register('withArgs', function (string $foo, string $value, string $bar): string {
+        $registrar->register('withArgs', function ($foo, $value, $bar) {
             return $foo.$value.$bar;
         });
 

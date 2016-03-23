@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Alfheim\Sanitizer\Registrar;
 
@@ -24,7 +24,7 @@ class LaravelRegistrar extends BaseRegistrar
     /**
      * {@inheritDoc}
      */
-    public function resolve(string $name)
+    public function resolve($name)
     {
         $value = $this->registrations[$name];
 

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Alfheim\Sanitizer;
 
@@ -37,7 +37,7 @@ class Sanitizer
      *
      * @static
      */
-    public static function make($ruleset): Sanitizer
+    public static function make($ruleset)
     {
         return (new static)->rules($ruleset);
     }
@@ -49,7 +49,7 @@ class Sanitizer
      *
      * @return \Alfheim\Sanitizer\Sanitizer  $this
      */
-    public function rules($ruleset): Sanitizer
+    public function rules($ruleset)
     {
         if (!is_array($ruleset)) {
             $ruleset = [static::GLOBAL_KEY => $ruleset];
@@ -111,7 +111,7 @@ class Sanitizer
      *
      * @return \Alfheim\Sanitizer\Sanitizer  $this
      */
-    public function setRegistrar(RegistrarInterface $registrar): Sanitizer
+    public function setRegistrar(RegistrarInterface $registrar)
     {
         $this->registrar = $registrar;
 
@@ -123,7 +123,7 @@ class Sanitizer
      *
      * @return bool
      */
-    protected function hasRegistrar(): bool
+    protected function hasRegistrar()
     {
         return !is_null($this->registrar);
     }
@@ -133,7 +133,7 @@ class Sanitizer
      *
      * @return bool
      */
-    protected function hasGlobals(): bool
+    protected function hasGlobals()
     {
         return isset($this->rules[static::GLOBAL_KEY]);
     }
@@ -145,7 +145,7 @@ class Sanitizer
      *
      * @return bool
      */
-    protected function shouldSanitize(string $key): bool
+    protected function shouldSanitize($key)
     {
         return isset($this->rules[$key]);
     }
@@ -158,12 +158,12 @@ class Sanitizer
      *
      * @return mixed
      */
-    protected function sanitizeValueFor(string $key, $value)
+    protected function sanitizeValueFor($key, $value)
     {
         foreach ($this->rules[$key] as $rule) {
             $value = call_user_func_array(
                 $this->getCallable($rule[0], $key),
-                $this->buildArguments($value, $rule[1] ?? null)
+                $this->buildArguments($value, isset($rule[1]) ? $rule[1] : null)
             );
         }
 
@@ -180,7 +180,7 @@ class Sanitizer
      *
      * @throws \InvalidArgumentException
      */
-    protected function getCallable($value, string $key): callable
+    protected function getCallable($value, $key)
     {
         // If the value is a string, a registrar is set and the value is
         // registred with the registrar, resolve it there.
@@ -219,7 +219,7 @@ class Sanitizer
      *
      * @return array
      */
-    protected function buildArguments($value, array $args = null): array
+    protected function buildArguments($value, array $args = null)
     {
         if (!$args) {
             return (array)$value;
@@ -246,7 +246,7 @@ class Sanitizer
      *
      * @throws \InvalidArgumentException
      */
-    protected function addRule(string $key, $rules)
+    protected function addRule($key, $rules)
     {
         if ($this->shouldSanitize($key)) {
             throw new InvalidArgumentException(sprintf(
@@ -264,7 +264,7 @@ class Sanitizer
      *
      * @return array
      */
-    protected function buildRules($rules): array
+    protected function buildRules($rules)
     {
         if (is_string($rules)) {
             $rules = explode('|', $rules);
@@ -295,7 +295,7 @@ class Sanitizer
      *
      * @return string
      */
-    protected function getFilterMethodName(string $value): string
+    protected function getFilterMethodName($value)
     {
         return sprintf('filter%s', lcfirst(
             str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $value)))

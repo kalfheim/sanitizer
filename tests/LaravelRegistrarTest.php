@@ -1,9 +1,7 @@
-<?php declare(strict_types=1);
+<?php
 
-use Alfheim\Sanitizer\{
-    Sanitizer,
-    Registrar\LaravelRegistrar
-};
+use Alfheim\Sanitizer\Sanitizer;
+use Alfheim\Sanitizer\Registrar\LaravelRegistrar;
 
 use Mockery as m;
 use Illuminate\Contracts\Container\Container;
@@ -62,12 +60,12 @@ class LaravelRegistrarTest extends PHPUnit_Framework_TestCase
 
 class MyCoolClass
 {
-    public function coolMethod(string $value): string
+    public function coolMethod($value)
     {
         return strtoupper($value);
     }
 
-    public function filterFoo(string $value): string
+    public function filterFoo($value)
     {
         return 'foo'.$value;
     }

@@ -1,18 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Alfheim\Sanitizer;
 
-use Alfheim\Sanitizer\{
-    Sanitizer,
-    Registrar\LaravelRegistrar,
-    Registrar\RegistrarInterface
-};
+use Alfheim\Sanitizer\Sanitizer;
+use Alfheim\Sanitizer\Registrar\LaravelRegistrar;
+use Alfheim\Sanitizer\Registrar\RegistrarInterface;
 
-use Illuminate\{
-    Support\ServiceProvider,
-    Contracts\Container\Container,
-    Contracts\Foundation\Application
-};
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Foundation\Application;
 
 class SanitizerServiceProvider extends ServiceProvider
 {
@@ -25,13 +21,13 @@ class SanitizerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(RegistrarInterface::class,
-            function (Container $app): RegistrarInterface {
+            function (Container $app) {
                 return new LaravelRegistrar($app);
             }
         );
 
         $this->app->bind(Sanitizer::class,
-            function (Application $app): Sanitizer {
+            function (Application $app) {
                 return (new Sanitizer)->setRegistrar(
                     $app->make(RegistrarInterface::class)
                 );
@@ -42,7 +38,7 @@ class SanitizerServiceProvider extends ServiceProvider
     /**
      * {@inheritDoc}
      */
-    public function provides(): array
+    public function provides()
     {
         return [
             Sanitizer::class,

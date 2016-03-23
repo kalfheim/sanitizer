@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Alfheim\Sanitizer\Laravel;
 
@@ -37,7 +37,7 @@ trait SanitizesRequests
      *
      * @return array
      */
-    public function sanitize(Request $request, array $ruleset): array
+    public function sanitize(Request $request, array $ruleset)
     {
         $factory = app(Sanitizer::class)->rules($ruleset);
 
