@@ -173,8 +173,8 @@ class SanitizerTest extends PHPUnit_Framework_TestCase
                 'strtoupper',
                 function ($value) {
                     return trim($value);
-                }
-            ]
+                },
+            ],
         ])->sanitize($original);
 
         $this->assertEquals($expected, $value);
@@ -209,7 +209,7 @@ class SanitizerTest extends PHPUnit_Framework_TestCase
         $expected = ['foo' => 'foobar'];
 
         $value = Sanitizer::make([
-            'foo' => new MyFilterClass
+            'foo' => new MyFilterClass,
         ])->sanitize($original);
 
         $this->assertEquals($expected, $value);
@@ -223,7 +223,7 @@ class SanitizerTest extends PHPUnit_Framework_TestCase
     public function it_should_throw_exception_of_invalid_rule()
     {
         $factory = Sanitizer::make([
-            'foo' => 'fe437bb_IWillNeverExist'
+            'foo' => 'fe437bb_IWillNeverExist',
         ]);
 
         $factory->sanitize(['foo' => 'bar']);

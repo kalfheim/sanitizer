@@ -3,7 +3,6 @@
 use Alfheim\Sanitizer\Sanitizer;
 use Alfheim\Sanitizer\SanitizerServiceProvider;
 use Alfheim\Sanitizer\Registrar\RegistrarInterface;
-
 use Mockery as m;
 use Illuminate\Contracts\Foundation\Application;
 

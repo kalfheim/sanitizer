@@ -113,7 +113,7 @@ class YellRequest extends Request
     }
 }
 
-if (!function_exists('Alfheim\Sanitizer\Laravel\app')) {
+if (! function_exists('Alfheim\Sanitizer\Laravel\app')) {
     function app($abstract)
     {
         if ($abstract === Sanitizer::class) {

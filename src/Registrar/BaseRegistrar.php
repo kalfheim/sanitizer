@@ -10,7 +10,7 @@ class BaseRegistrar implements RegistrarInterface
     protected $registrations = [];
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function register($name, $sanitizer)
     {
@@ -24,7 +24,7 @@ class BaseRegistrar implements RegistrarInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function isRegistred($name)
     {
@@ -32,7 +32,7 @@ class BaseRegistrar implements RegistrarInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function resolve($name)
     {

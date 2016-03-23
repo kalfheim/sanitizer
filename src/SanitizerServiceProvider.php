@@ -2,21 +2,19 @@
 
 namespace Alfheim\Sanitizer;
 
-use Alfheim\Sanitizer\Sanitizer;
 use Alfheim\Sanitizer\Registrar\LaravelRegistrar;
 use Alfheim\Sanitizer\Registrar\RegistrarInterface;
-
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Foundation\Application;
 
 class SanitizerServiceProvider extends ServiceProvider
 {
-    /** {@inheritDoc} */
+    /** {@inheritdoc} */
     protected $defer = true;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function register()
     {
@@ -36,7 +34,7 @@ class SanitizerServiceProvider extends ServiceProvider
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function provides()
     {

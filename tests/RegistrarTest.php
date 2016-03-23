@@ -66,7 +66,7 @@ class RegistrarTest extends PHPUnit_Framework_TestCase
                 'withArgs:foo:{{ VALUE }}:bar',
                 function ($value) {
                     return strtoupper($value);
-                }
+                },
             ],
         ])->setRegistrar($this->makeRegistrar());
 

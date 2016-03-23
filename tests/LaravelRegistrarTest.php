@@ -2,7 +2,6 @@
 
 use Alfheim\Sanitizer\Sanitizer;
 use Alfheim\Sanitizer\Registrar\LaravelRegistrar;
-
 use Mockery as m;
 use Illuminate\Contracts\Container\Container;
 
