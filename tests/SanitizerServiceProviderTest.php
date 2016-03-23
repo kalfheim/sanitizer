@@ -1,13 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+use Alfheim\Sanitizer\Sanitizer;
+use Alfheim\Sanitizer\SanitizerServiceProvider;
+use Alfheim\Sanitizer\Registrar\RegistrarInterface;
 
 use Mockery as m;
-
-use Alfheim\Sanitizer\{
-    Sanitizer,
-    SanitizerServiceProvider,
-    Registrar\RegistrarInterface
-};
-
 use Illuminate\Contracts\Foundation\Application;
 
 class SanitizerServiceProviderTest extends PHPUnit_Framework_TestCase

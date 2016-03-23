@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 use Alfheim\Sanitizer\Sanitizer;
 
@@ -155,7 +155,7 @@ class SanitizerTest extends PHPUnit_Framework_TestCase
         $original = 'foo ';
         $expected = 'foo';
 
-        $value = Sanitizer::make(function (string $value): string {
+        $value = Sanitizer::make(function ($value) {
             return trim($value);
         })->sanitize($original);
 
@@ -171,7 +171,7 @@ class SanitizerTest extends PHPUnit_Framework_TestCase
         $value = Sanitizer::make([
             '*' => [
                 'strtoupper',
-                function (string $value): string {
+                function ($value) {
                     return trim($value);
                 }
             ]
@@ -258,14 +258,14 @@ class SanitizerTest extends PHPUnit_Framework_TestCase
     }
 }
 
-function someFunction(string $one, string $value, string $two): string
+function someFunction($one, $value, $two)
 {
     return $one.$value.$two;
 }
 
 class MyFilterClass
 {
-    public function filterFoo(string $value): string
+    public function filterFoo($value)
     {
         return 'foo'.$value;
     }

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Alfheim\Sanitizer\Laravel;
 
@@ -85,7 +85,7 @@ class SanitizesFormRequestTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $request->all());
     }
 
-    private function newRequest(string $kind, array $input): Request
+    private function newRequest($kind, array $input)
     {
         return $kind::createFromBase(Request::create('foo', 'POST', $input));
     }
@@ -114,7 +114,7 @@ class YellRequest extends Request
 }
 
 if (!function_exists('Alfheim\Sanitizer\Laravel\app')) {
-    function app(string $abstract): Sanitizer
+    function app($abstract)
     {
         if ($abstract === Sanitizer::class) {
             return new Sanitizer;

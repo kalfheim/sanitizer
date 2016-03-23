@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Alfheim\Sanitizer\Registrar;
 
@@ -12,7 +12,7 @@ class BaseRegistrar implements RegistrarInterface
     /**
      * {@inheritDoc}
      */
-    public function register(string $name, $sanitizer): bool
+    public function register($name, $sanitizer)
     {
         if ($this->isRegistred($name)) {
             return false;
@@ -26,7 +26,7 @@ class BaseRegistrar implements RegistrarInterface
     /**
      * {@inheritDoc}
      */
-    public function isRegistred(string $name): bool
+    public function isRegistred($name)
     {
         return isset($this->registrations[$name]);
     }
@@ -34,7 +34,7 @@ class BaseRegistrar implements RegistrarInterface
     /**
      * {@inheritDoc}
      */
-    public function resolve(string $name)
+    public function resolve($name)
     {
         if (
             $this->isRegistred($name) &&

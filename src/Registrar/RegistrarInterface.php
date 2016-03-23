@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Alfheim\Sanitizer\Registrar;
 
@@ -12,7 +12,7 @@ interface RegistrarInterface
      *
      * @return bool
      */
-    public function register(string $name, $sanitizer): bool;
+    public function register($name, $sanitizer);
 
     /**
      * Check if a given name is registred.
@@ -21,7 +21,7 @@ interface RegistrarInterface
      *
      * @return bool
      */
-    public function isRegistred(string $name): bool;
+    public function isRegistred($name);
 
     /**
      * Resolve a callable or an object from the registrations.
@@ -32,5 +32,5 @@ interface RegistrarInterface
      *
      * @throws \InvalidArgumentException
      */
-    public function resolve(string $name);
+    public function resolve($name);
 }

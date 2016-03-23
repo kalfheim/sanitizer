@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Alfheim\Sanitizer\Laravel;
 
@@ -32,7 +32,7 @@ final class FakeController
 {
     use SanitizesRequests;
 
-    public function getData(Request $request): array
+    public function getData(Request $request)
     {
         $input = $this->sanitize($request, [
             'foo' => 'strtoupper',
@@ -44,7 +44,7 @@ final class FakeController
 }
 
 if (!function_exists('Alfheim\Sanitizer\Laravel\app')) {
-    function app(string $abstract): Sanitizer
+    function app($abstract)
     {
         if ($abstract === Sanitizer::class) {
             return new Sanitizer;
