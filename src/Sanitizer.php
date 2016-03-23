@@ -25,7 +25,9 @@ class Sanitizer
     /** @var array */
     protected $rules = [];
 
-    /** @var \Alfheim\Sanitizer\Registrar\RegistrarInteraface */
+    /**
+     * @var \Alfheim\Sanitizer\Registrar\RegistrarInteraface
+     */
     protected $registrar;
 
     /**
