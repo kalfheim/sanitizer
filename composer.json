@@ -1,0 +1,36 @@
+{
+  "name": "kalfheim/sanitizer",
+  "description": "Data sanitizer for PHP with built-in Laravel support.",
+  "keywords": ["sanitizer", "sanitation", "filter", "filtering", "laravel"],
+  "license": "MIT",
+  "homepage": "http://github.com/kalfheim/sanitizer",
+  "support": {
+    "issues": "http://github.com/kalfheim/sanitizer/issues",
+    "source": "http://github.com/kalfheim/sanitizer"
+  },
+  "authors": [
+    {
+      "name": "Kristoffer Alfheim",
+      "email": "kristoffer.alfh@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5",
+    "mockery/mockery": "^0.9",
+    "illuminate/contracts": "^5.2",
+    "illuminate/support": "^5.2",
+    "illuminate/http": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Alfheim\\Sanitizer\\": "./src"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "minimum-stability": "dev"
+}

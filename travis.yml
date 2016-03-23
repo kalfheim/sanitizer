@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - 7.0
+  - hhvm
+
+sudo: false
+
+install:
+  - travis_retry composer install --dev --prefer-source --no-interaction
+
+script: composer test
