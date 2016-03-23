@@ -20,7 +20,7 @@ class LaravelRegistrar extends BaseRegistrar
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function resolve($name)
     {
@@ -33,7 +33,7 @@ class LaravelRegistrar extends BaseRegistrar
 
                 if ($this->container->bound($segments[0])) {
                     return [
-                        $this->container->make($segments[0]), $segments[1]
+                        $this->container->make($segments[0]), $segments[1],
                     ];
                 }
             }

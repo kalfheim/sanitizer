@@ -51,7 +51,7 @@ class Sanitizer
      */
     public function rules($ruleset)
     {
-        if (!is_array($ruleset)) {
+        if (! is_array($ruleset)) {
             $ruleset = [static::GLOBAL_KEY => $ruleset];
         }
 
@@ -72,7 +72,7 @@ class Sanitizer
     public function sanitize($data)
     {
         if ($this->hasGlobals()) {
-            if (!is_array($data)) {
+            if (! is_array($data)) {
                 return $this->sanitizeValueFor(static::GLOBAL_KEY, $data);
             }
 
@@ -82,7 +82,7 @@ class Sanitizer
         }
 
         foreach ($data as $key => $value) {
-            if (!$this->shouldSanitize($key)) {
+            if (! $this->shouldSanitize($key)) {
                 continue;
             }
 
@@ -123,7 +123,7 @@ class Sanitizer
      */
     protected function hasRegistrar()
     {
-        return !is_null($this->registrar);
+        return ! is_null($this->registrar);
     }
 
     /**
@@ -219,14 +219,14 @@ class Sanitizer
      */
     protected function buildArguments($value, array $args = null)
     {
-        if (!$args) {
-            return (array)$value;
+        if (! $args) {
+            return (array) $value;
         }
 
         $valuePosition = array_search(static::PLACEHOLDER_VALUE, $args, true);
 
         if ($valuePosition === false) {
-            return array_merge((array)$value, $args);
+            return array_merge((array) $value, $args);
         } else {
             $args[$valuePosition] = $value;
         }
@@ -272,7 +272,7 @@ class Sanitizer
 
         $built = [];
 
-        foreach ((array)$rules as $rule) {
+        foreach ((array) $rules as $rule) {
             if (is_string($rule) && strpos($rule, ':') !== false) {
                 $args = explode(':', $rule);
                 $rule = array_shift($args);
