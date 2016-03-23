@@ -6,6 +6,7 @@ php:
 sudo: false
 
 install:
-  - travis_retry composer install --dev --prefer-source --no-interaction
+  - composer global require hirak/prestissimo --prefer-dist --no-interaction --no-progress
+  - travis_retry composer install --prefer-dist --no-interaction --no-progress
 
 script: composer test
