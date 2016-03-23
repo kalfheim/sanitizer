@@ -25,9 +25,7 @@ class Sanitizer
     /** @var array */
     protected $rules = [];
 
-    /**
-     * @var \Alfheim\Sanitizer\Registrar\RegistrarInteraface
-     */
+    /** @var \Alfheim\Sanitizer\Registrar\RegistrarInterface */
     protected $registrar;
 
     /**
@@ -107,7 +105,7 @@ class Sanitizer
     /**
      * Set the registrar instance for the sanitizer.
      *
-     * @param  \Alfheim\Sanitizer\Registrar\RegistrarInteraface  $registrar
+     * @param  \Alfheim\Sanitizer\Registrar\RegistrarInterface  $registrar
      *
      * @return \Alfheim\Sanitizer\Sanitizer  $this
      */
