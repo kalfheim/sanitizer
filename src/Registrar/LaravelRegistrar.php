@@ -13,8 +13,6 @@ class LaravelRegistrar extends BaseRegistrar
      * Create a new Laravel registrar instance.
      *
      * @param  \Illuminate\Contracts\Container\Container  $container
-     *
-     * @return void
      */
     public function __construct(Container $container)
     {

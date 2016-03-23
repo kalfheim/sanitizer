@@ -25,7 +25,7 @@ class Sanitizer
     /** @var array */
     protected $rules = [];
 
-    /** @var \Alfheim\Sanitizer\Registrar\RegistrarInteraface|null */
+    /** @var \Alfheim\Sanitizer\Registrar\RegistrarInteraface */
     protected $registrar;
 
     /**
@@ -96,8 +96,6 @@ class Sanitizer
      * Sanitize some data by reference.
      *
      * @param  mixed  &$data
-     *
-     * @return void
      */
     public function sanitizeByRef(&$data)
     {
