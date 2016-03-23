@@ -30,7 +30,7 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": "vendor/bin/phpunit --colors=always"
   },
   "minimum-stability": "dev"
 }
