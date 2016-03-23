@@ -1,4 +1,4 @@
-# sanitizer [![Build Status](https://travis-ci.org/kalfheim/sanitizer.svg?branch=master)](https://travis-ci.org/kalfheim/sanitizer)
+# sanitizer [![Build Status](https://travis-ci.org/kalfheim/sanitizer.svg?branch=master)](https://travis-ci.org/kalfheim/sanitizer) [![StyleCI](https://styleci.io/repos/54579807/shield)](https://styleci.io/repos/54579807) [![Code Coverage](https://scrutinizer-ci.com/g/kalfheim/sanitizer/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kalfheim/sanitizer/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kalfheim/sanitizer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kalfheim/sanitizer/?branch=master)
 
 > Data sanitizer for PHP with built-in Laravel support.
 
