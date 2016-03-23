@@ -1,4 +1,12 @@
-# sanitizer [![Build Status](https://travis-ci.org/kalfheim/sanitizer.svg?branch=master)](https://travis-ci.org/kalfheim/sanitizer) [![StyleCI](https://styleci.io/repos/54579807/shield)](https://styleci.io/repos/54579807) [![Code Coverage](https://scrutinizer-ci.com/g/kalfheim/sanitizer/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kalfheim/sanitizer/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kalfheim/sanitizer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kalfheim/sanitizer/?branch=master)
+# sanitizer    
+
+[![Build Status](https://travis-ci.org/kalfheim/sanitizer.svg?branch=master)](https://travis-ci.org/kalfheim/sanitizer)
+[![StyleCI](https://styleci.io/repos/54579807/shield)](https://styleci.io/repos/54579807)
+[![Code Coverage](https://scrutinizer-ci.com/g/kalfheim/sanitizer/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kalfheim/sanitizer/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kalfheim/sanitizer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kalfheim/sanitizer/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/kalfheim/sanitizer/v/stable)](https://packagist.org/packages/kalfheim/sanitizer)
+[![Latest Unstable Version](https://poser.pugx.org/kalfheim/sanitizer/v/unstable)](https://packagist.org/packages/kalfheim/sanitizer)
+[![License](https://poser.pugx.org/kalfheim/sanitizer/license)](https://packagist.org/packages/kalfheim/sanitizer)
 
 > Data sanitizer for PHP with built-in Laravel support.
 
