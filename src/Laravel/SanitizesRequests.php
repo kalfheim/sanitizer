@@ -33,7 +33,7 @@ trait SanitizesRequests
      * Run a sanitizer on a request object and return the sanitized data.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  array                     $ruleset
+     * @param  array  $ruleset
      *
      * @return array
      */

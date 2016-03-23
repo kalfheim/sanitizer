@@ -237,7 +237,7 @@ class Sanitizer
     /**
      * Add a rule to the sanitizer factory.
      *
-     * @param  string                 $key
+     * @param  string  $key
      * @param  string|array|\Closure  $rules
      *
      * @return void
