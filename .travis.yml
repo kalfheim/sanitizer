@@ -9,8 +9,12 @@ php:
 
 sudo: false
 
-install:
+before_install:
+  - composer self-update
   - composer global require hirak/prestissimo --prefer-dist --no-interaction --no-progress
+
+install:
   - travis_retry composer install --prefer-dist --no-interaction --no-progress
 
-script: composer test
+script:
+  - composer test
