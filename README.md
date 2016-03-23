@@ -1,4 +1,4 @@
-# sanitizer
+# sanitizer [![Build Status](https://travis-ci.org/kalfheim/sanitizer.svg?branch=master)](https://travis-ci.org/kalfheim/sanitizer)
 
 > Data sanitizer for PHP with built-in Laravel support.
 
