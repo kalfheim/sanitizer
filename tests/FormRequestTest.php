@@ -85,6 +85,22 @@ class FormRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $request->all());
     }
 
+    /** @test */
+    public function it_should_do_nothing_when_no_rules()
+    {
+        $request = $this->newFormRequest(NoRulesRequest::class, [
+            'foo' => 'hi',
+            'bar' => 'hello',
+        ]);
+
+        $expected = [
+            'foo' => 'hi',
+            'bar' => 'hello',
+        ];
+
+        $this->assertEquals($expected, $request->all());
+    }
+
     private function newFormRequest($kind, array $input)
     {
         $base = Request::create('foo', 'POST', $input);
@@ -114,6 +130,11 @@ class YellRequest extends FormRequest
     {
         return 'strtoupper';
     }
+}
+
+class NoRulesRequest extends FormRequest
+{
+    //
 }
 
 if (! function_exists('Alfheim\Sanitizer\Laravel\app')) {
