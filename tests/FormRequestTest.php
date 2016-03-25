@@ -101,6 +101,16 @@ class FormRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $request->all());
     }
 
+    /** @test */
+    public function it_should_do_noting_when_no_data()
+    {
+        $request = $this->newFormRequest(YellRequest::class, []);
+
+        $expected = [];
+
+        $this->assertEquals($expected, $request->all());
+    }
+
     private function newFormRequest($kind, array $input)
     {
         $base = Request::create('foo', 'POST', $input);
