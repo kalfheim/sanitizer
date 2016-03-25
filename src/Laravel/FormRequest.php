@@ -83,7 +83,7 @@ abstract class FormRequest extends BaseFormRequest
      */
     public function initialize(array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null)
     {
-        if ($request && ($rules = $this->sanitize())) {
+        if (! empty($request) && ($rules = $this->sanitize())) {
             $sanitizer = app(Sanitizer::class)->rules($rules);
 
             $request = $sanitizer->sanitize($request);
