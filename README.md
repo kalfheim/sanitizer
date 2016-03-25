@@ -114,25 +114,37 @@ Register the service provider in your `config/app.php` as per usual...
 
     Alfheim\Sanitizer\SanitizerServiceProvider::class,
 
-### Helper Traits
+### Extending the FormRequest
 
-#### `Alfheim\Sanitizer\Laravel\SanitizesFormRequest`
+**This is where the package shines.**
+By extending the `Alfheim\Sanitizer\Laravel\FormRequest` on your base `App\Http\Requests\Request` class (instead of the default `Illuminate\Foundation\Http\FormRequest`), you'll be able to define sanitation rules in a `sanitize` method on the given form request, similar to how you define validation rules in the `rules` method.
 
-This trait makes it trivial to add sanitation rules directly onto a `FormRequest`.
-
-Similar to how you define validation rules on a `FormRequest` by defining a `rules`
-method which returns an array, you may define sanitation rules by defining a `sanitize`
-method which returns an array containing the sanitation rules, like so...
+Let me show you in code...
 
 ``` php
+// app/Http/Requests/Request.php
+
 namespace App\Http\Requests;
 
-use Alfheim\Sanitizer\Laravel\SanitizesFormRequest;
+use Alfheim\Sanitizer\Laravel\FormRequest;
+// Instead of `Illuminate\Foundation\Http\FormRequest`
+
+abstract class Request extends FormRequest
+{
+    //
+}
+```
+
+That's it! Now it's trivial to define sanitation rules on your form requests...
+
+``` php
+// app/Http/Requests/FooRequest.php
+
+namespace App\Http\Requests;
 
 class FooRequest extends Request
 {
-    use SanitizesFormRequest;
-
+    // Sanitation rules...
     public function sanitize()
     {
         return [
@@ -152,7 +164,7 @@ class FooRequest extends Request
 }
 ```
 
-Next, in a controller...
+For completeness, I'll show you the controller...
 
 ``` php
 namespace App\Http\Controllers;
@@ -164,7 +176,7 @@ class FooController extends Controller
     public function create(FooRequest $request)
     {
         // At this point, the $request will be both sanitized and validated.
-        // So you may go ahead and access the input as usual:
+        // You may go ahead and access the input as usual:
 
         $request->all();
         $request->input('name');
@@ -173,6 +185,8 @@ class FooController extends Controller
     }
 }
 ```
+
+### Helper Trait
 
 #### `Alfheim\Sanitizer\Laravel\SanitizesRequests`
 

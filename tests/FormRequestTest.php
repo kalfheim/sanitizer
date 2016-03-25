@@ -3,14 +3,14 @@
 namespace Alfheim\Sanitizer\Laravel;
 
 use Alfheim\Sanitizer\Sanitizer;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Request;
 
-class SanitizesFormRequestTraitTest extends \PHPUnit_Framework_TestCase
+class FormRequestTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
     public function it_should_sanitize_all()
     {
-        $request = $this->newRequest(TrimFooRequest::class, [
+        $request = $this->newFormRequest(TrimFooRequest::class, [
             'foo' => ' foo',
             'bar' => ' bar',
         ]);
@@ -26,7 +26,7 @@ class SanitizesFormRequestTraitTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_should_sanitize_dynamic_properties()
     {
-        $request = $this->newRequest(TrimFooRequest::class, [
+        $request = $this->newFormRequest(TrimFooRequest::class, [
             'foo' => ' foo',
             'bar' => ' bar',
         ]);
@@ -38,7 +38,7 @@ class SanitizesFormRequestTraitTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_should_sanitize_only()
     {
-        $request = $this->newRequest(TrimFooRequest::class, [
+        $request = $this->newFormRequest(TrimFooRequest::class, [
             'foo' => ' foo',
             'bar' => ' bar',
             'baz' => 'baz',
@@ -55,7 +55,7 @@ class SanitizesFormRequestTraitTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_should_sanitize_except()
     {
-        $request = $this->newRequest(TrimFooRequest::class, [
+        $request = $this->newFormRequest(TrimFooRequest::class, [
             'foo' => ' foo',
             'bar' => ' bar',
             'baz' => 'baz',
@@ -72,7 +72,7 @@ class SanitizesFormRequestTraitTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_should_sanitize_with_global_rule()
     {
-        $request = $this->newRequest(YellRequest::class, [
+        $request = $this->newFormRequest(YellRequest::class, [
             'foo' => 'hi',
             'bar' => 'hello',
         ]);
@@ -85,17 +85,38 @@ class SanitizesFormRequestTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $request->all());
     }
 
-    private function newRequest($kind, array $input)
+    /** @test */
+    public function it_should_do_nothing_when_no_rules()
     {
-        return $kind::createFromBase(Request::create('foo', 'POST', $input));
+        $request = $this->newFormRequest(NoRulesRequest::class, [
+            'foo' => 'hi',
+            'bar' => 'hello',
+        ]);
+
+        $expected = [
+            'foo' => 'hi',
+            'bar' => 'hello',
+        ];
+
+        $this->assertEquals($expected, $request->all());
+    }
+
+    private function newFormRequest($kind, array $input)
+    {
+        $base = Request::create('foo', 'POST', $input);
+
+        $form = new $kind(
+            $base->query->all(), $base->request->all(), $base->attributes->all(),
+            $base->cookies->all(), [], $base->server->all(), $base->getContent()
+        );
+
+        return $form;
     }
 }
 
-class TrimFooRequest extends Request
+class TrimFooRequest extends FormRequest
 {
-    use SanitizesFormRequest;
-
-    public function sanitation()
+    public function sanitize()
     {
         return [
             'foo' => 'trim',
@@ -103,14 +124,17 @@ class TrimFooRequest extends Request
     }
 }
 
-class YellRequest extends Request
+class YellRequest extends FormRequest
 {
-    use SanitizesFormRequest;
-
-    public function sanitation()
+    public function sanitize()
     {
         return 'strtoupper';
     }
+}
+
+class NoRulesRequest extends FormRequest
+{
+    //
 }
 
 if (! function_exists('Alfheim\Sanitizer\Laravel\app')) {
