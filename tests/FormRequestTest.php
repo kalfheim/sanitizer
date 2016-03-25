@@ -3,7 +3,6 @@
 namespace Alfheim\Sanitizer\Laravel;
 
 use Alfheim\Sanitizer\Sanitizer;
-use Alfheim\Sanitizer\Laravel\FormRequest;
 use Symfony\Component\HttpFoundation\Request;
 
 class FormRequestTest extends \PHPUnit_Framework_TestCase
