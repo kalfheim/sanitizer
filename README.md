@@ -10,6 +10,10 @@
 
 > Data sanitizer for PHP with built-in Laravel support.
 
+## Installation
+
+    composer require kalfheim/sanitizer
+
 ## Usage
 
 ``` php
