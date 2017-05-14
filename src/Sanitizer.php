@@ -82,10 +82,6 @@ class Sanitizer
         }
 
         foreach ($data as $key => $value) {
-            if (! $this->shouldSanitize($key)) {
-                continue;
-            }
-
             $data[$key] = $this->sanitizeValueFor($key, $value);
         }
 
@@ -149,16 +145,36 @@ class Sanitizer
     }
 
     /**
-     * Sanitize a single value for a given key.
+     * Sanitize a singlev value for a given key.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param  string $key
+     * @param  mixed  $value
+     * @param  string $fullKey
      *
      * @return mixed
      */
-    protected function sanitizeValueFor($key, $value)
+    protected function sanitizeValueFor($key, $value, $fullKey = null)
     {
-        foreach ($this->rules[$key] as $rule) {
+        if (is_null($fullKey)) {
+            $fullKey = $key;
+        }
+
+        // Hadle nested arrays
+        if (is_array($value)) {
+            foreach ($value as $subKey => $subValue) {
+                // Make new full key only if it's non global pass
+                $newFullKey = $key === static::GLOBAL_KEY ? $key : $key . '.*.' . $subKey;
+                $value[$subKey] = $this->sanitizeValueFor($key, $subValue, $newFullKey);
+            }
+
+            return $value;
+        }
+
+        if (! $this->shouldSanitize($fullKey)) {
+            return $value;
+        }
+
+        foreach ($this->rules[$fullKey] as $rule) {
             $value = call_user_func_array(
                 $this->getCallable($rule[0], $key),
                 $this->buildArguments($value, isset($rule[1]) ? $rule[1] : null)
