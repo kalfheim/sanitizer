@@ -84,6 +84,35 @@ class SanitizerTest extends PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function it_should_sanitise_nested_arrays()
+    {
+        $original = [
+            'subarray' => [
+                'field'       => ' test ',
+                'subsubarray' => [
+                    'field' => ' test ',
+                ],
+            ],
+        ];
+        $expected = [
+            'subarray' => [
+                'field'       => 'TEST',
+                'subsubarray' => [
+                    'field' => 'TEST',
+                ],
+            ],
+        ];
+
+        $factory = Sanitizer::make([
+            '*'                              => 'trim',
+            'subarray.*.field'               => 'strtoupper',
+            'subarray.*.subsubarray.*.field' => 'strtoupper',
+        ]);
+
+        $this->assertEquals($expected, $factory->sanitize($original));
+    }
+
+    /** @test */
     public function it_should_sanitize_data_by_reference()
     {
         $original = ['str' => 'Lorem Ipsum '];
